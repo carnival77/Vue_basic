@@ -7,7 +7,7 @@
 </template>
 <script>
 
-import {mapMutations} from 'vuex';
+import {mapActions} from 'vuex';
 
 export default {
   methods: {
@@ -15,10 +15,10 @@ export default {
     //   // this.$emit("clearEvent");
     //   this.$store.commit('clearTodo');
     // },
-    ...mapMutations(['clearTodo'])
+    // ...mapMutations(['clearTodo'])
+    ...mapActions(["clearTodo"]),
   },
 };
-//
 </script>
 <style scoped>
 .clearAllContainer {

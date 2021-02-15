@@ -8,13 +8,13 @@
         <i
           class="fas fa-check checkBtn"
           :class="{ textCompleted: todoItem.completed }"
-          @click="toggleTodo({todoItem, index})"
-          
+          @click="toggleTodo(todoItem)"
         ></i>
         <span :class="{ textCompleted: todoItem.completed }">{{
           todoItem.item
         }}</span>
-        <span class="removeBtn" @click="removeTodo({todoItem, index})">
+        <!-- <span class="removeBtn" @click="removeTodo({ todoItem, index })"> -->
+        <span class="removeBtn" @click="removeTodo(todoItem)">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -22,29 +22,37 @@
   </div>
 </template>
 <script>
-import { mapGetters,mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
+  mounted() {
+    this.$store.dispatch("loadTodoItems");
+  },
   // props: ["todoItems"],
   computed: {
-    ...mapGetters(['getTodoItems']),
+    ...mapGetters(["getTodoItems"]),
   },
   methods: {
     // removeTodo: function(todoItem, index) {
-      // removeTodo(todoItem, index) {
-      // // this.$emit("removeEvent",todoItem,index);
-      // this.$store.commit("removeTodo", { todoItem, index });
-      // 중괄호로 해서 하나의 객체로 준다.
-  // },
-  //Helper 함수 사용
-      ...mapMutations(['removeTodo','toggleTodo']),
-    
+    // removeTodo(todoItem, index) {
+    // // this.$emit("removeEvent",todoItem,index);
+    // this.$store.commit("removeTodo", { todoItem, index });
+    // 중괄호로 해서 하나의 객체로 준다.
+    // },
+    //Helper 함수 사용
+    ...mapActions(["removeTodo"]),
+    toggleTodo(todoItem){
+      todoItem.completed = !todoItem.completed;
+      this.$store.dispatch('toggleTodo', todoItem);
+    }
+    // ...mapMutations(["removeTodo", "toggleTodo"]),
+    // ...mapMutations(["toggleTodo"]),
+
     // toggleComplete: function(todoItem, index) {
     //   toggleComplete(todoItem, index) {
     //   // this.$emit("toggleEvent",todoItem,idx);
     //   this.$store.commit("toggleTodo", { todoItem, index });
     // },
-    
   },
 };
 </script>

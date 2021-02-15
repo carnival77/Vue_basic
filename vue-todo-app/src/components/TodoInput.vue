@@ -18,7 +18,9 @@ export default {
       //   console.log(this.todoItem);
       if (this.todoItem !== "") {
         //this.$emit("addEvent", this.todoItem);
-        this.$store.commit('addTodo',this.todoItem);
+        // this.$store.commit('addTodo',this.todoItem);
+        const todoObj = { completed: false, item: this.todoItem };
+        this.$store.dispatch('addTodo', todoObj);
         this.clearInput();
       }
     },

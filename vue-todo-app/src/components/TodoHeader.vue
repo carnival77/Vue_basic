@@ -1,10 +1,17 @@
 <template>
   <div>
       <h1>TO DO</h1>
+      <p>{{mode}}</p>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      mode:process.env.VUE_APP_TITLE
+    }
+  },
+};
 </script>
 <style scoped>
 h1 {
