@@ -28,3 +28,7 @@ const mutations = {
         state.posts = items;
     },
 };
+
+export default {
+    state, actions, getters, mutations
+}
