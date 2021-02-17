@@ -25,7 +25,7 @@ const routes = [
     path: '/posts', component: Posts,
     children: [
       { path: 'new', compoenet: PostNew },
-      { path: 'detail', component: PostDetail }
+      { path: ':id', component: PostDetail,name:'post' }
     ]
   }
 ]
