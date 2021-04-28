@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id = "app">
+        <label>이름을 입력하세요</label>
+        <input type="text" v-model="name">
+        <span v-if="name.length<3">이름은 3글자 이상입니다.</span>
+        <span v-else></span>
+        <br>
+
+        <label>나이를 입력하세요</label>
+        <input type="text" v-model="age">
+        <span v-if="age >= 10 && age <=120"></span>
+        <span v-else>나이는 10세 이상, 120 이하만 가능합니다.</span>
+    
+    </div>
+
+
+    <script>
+
+
+        var app = new Vue({
+            // el : '#app' // css 선택자 이용
+            el : '#app',
+            data:{
+                name:"",
+                age:""
+            }
+        });
+    </script>
+
+</body>
+</html>

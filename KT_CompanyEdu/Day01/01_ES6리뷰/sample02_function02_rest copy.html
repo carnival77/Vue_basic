@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function func1(...n1){ // 몇 개가 들어오든 파라미터 전체를 배열로
+            console.log(n1);
+        }
+        func1(10);
+        func1(10,11);
+        func1(1,2,3);
+
+        function func2(m,...n){ // 앞에 컴마로 표시한 것 제외한 것을 배열로 
+            console.log(m,n);
+        }
+        func2(10,20);
+        func2(1,2,3);
+
+    </script>
+
+</body>
+</html>

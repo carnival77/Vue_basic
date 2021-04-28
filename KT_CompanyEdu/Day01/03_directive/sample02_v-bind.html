@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .red-accent{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id = "app">
+        <ul v-bind:id="mid">
+            <li v-bind:class="mclass">클래스 바인딩</li>
+            <li :style="mstyle">스타일 바인딩</li>
+            <li><a :href="link.to" :title="link.title">구글</a></li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            // el : '#app' // css 선택자 이용
+            el : '#app',
+            data:{
+                mid:"list",
+                mclass: "red-accent",
+                mstyle:"color:red",
+                link:{
+                    to:"http://google.com",
+                    title:"구글로"
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

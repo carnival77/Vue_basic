@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        메시지 : {{message}}<br>
+        메시지글자수 : {{message.length}}<br>
+        메시지 대문자 : {{message.toUpperCase()}}<br>
+        내년 나이:{{age+1}}<br>
+        나이가 30 미만인가? : {{age<30}}<br>
+        결혼여부 : {{isMarried?"기혼":"미혼"}}<br>
+    </div>
+
+    <script>
+
+        let model = {
+            message : "안녕~",
+            age:20,
+            phones:["010","011"],
+            person:{username:"홍길동",addr:"서울"},
+            isMarried:true
+        };
+
+        var app = new Vue({
+            el : '#app', // css 선택자 이용
+            data : model
+        });
+    </script>
+
+</body>
+</html>

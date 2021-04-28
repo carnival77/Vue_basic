@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id = "app">
+        <label>나이를 입력하세요</label><br>
+        <input type="text" v-model="age">
+        <img v-if="age < 0" src="./error.png" width="20" height="20">
+        <img v-show="age < 0" src="./error.png" width="20" height="20">
+        <hr>
+        당신은
+        <span v-if="age < 0">입력 오류</span>
+        <span v-else-if="age < 8">미취학</span>
+        <span v-else-if="age < 18">미성년</span>
+        <span v-else>성년</span>
+    
+    </div>
+
+
+    <script>
+
+
+        var app = new Vue({
+            // el : '#app' // css 선택자 이용
+            el : '#app',
+            data:{
+                age:""
+            }
+        });
+    </script>
+
+</body>
+</html>

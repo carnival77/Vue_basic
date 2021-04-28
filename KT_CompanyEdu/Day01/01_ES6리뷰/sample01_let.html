@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 변수 선언 방법
+
+        // 1. var 키워드 ( 변수명 중복 가능 ) (호이스팅 가능)
+        var n = 10;
+        var n = "hello";
+        console.log(n);
+
+        if(true){       // 함수 스코프를 따른다.
+            var n2=20;
+        }
+        console.log(n2);
+
+        // 2. let 키워드 (ES6) ( 변수명 중복 불가 ) (호이스팅 불가 )
+        let m = 10;
+        //let m = "hello";
+        console.log(m);
+
+        if(true){       // 블럭 스코프를 따른다.
+            let m2=20;
+        }
+        console.log(m2);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // spread 연산자 : 배열을 파라미터로 받아서 배열을 해제한 형태로 표현
+        
+        /* 전통적인 자바 스크립트 함수 작성법
+        1) 함수 선언식 ( 이름 있는 함수 )
+            function 함수명(변수){}
+
+        2) 함수 표현식 ( 익명 함수 )
+            var 변수 = function(){};
+
+
+        3) lambda 함수
+        3-1) 함수 표현식(익명 함수)를 다르게 표현한 함수
+        3-2) 함수 표현식은 기능에 따라서 4가지 표현
+
+        
+        */
+
+        
+        /* 기능적으로 표현 가능한 4가지 표현
+        파라미터 변수가 있거나, 리턴값이 있거나 .*/
+        //1. 파라미터 X 리턴 X
+        var fun = function(){
+            console.log("fun")
+        }
+        fun();
+
+        // 람다 표현식
+        var fun = () => {
+            console.log("람다 fun")
+        };
+        fun();
+
+        // 2. 파라미터 O, 리턴 X
+        var fun = function(n){
+            console.log("fun",n)
+        }
+        fun(10);
+
+        // 람다 표현식 
+        var fun = (n) => {
+            console.log("람다1 fun",n)
+        };
+        fun(100);
+
+        var fun = n => { // 파라미터가 한 개면 () 생략 가능
+            console.log("람다2 fun",n)
+        };
+        fun(200);
+
+        // 4. 파라미터 O, 리턴 O
+        var fun = function(n){
+            console.log("fun",n)
+            return n+100;
+        }
+        console.log(fun(10));
+
+        // 람다 표현식
+        var fun = n => {
+            console.log("람다 fun",n)
+            return n+100;
+        };
+        console.log(fun(100));
+
+        // return 만 있는 경우에는 {}와 return 생략 가능
+        var fun = n => n+100;
+        console.log(fun(40));
+        
+        
+
+    </script>
+
+</body>
+</html>

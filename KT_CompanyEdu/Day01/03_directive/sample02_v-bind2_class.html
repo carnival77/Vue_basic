@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .set1{
+            background:aqua;
+            color:red;
+
+        }
+        .set2{
+            text-decoration:red;
+            font-style:initial;
+            
+        }
+        .set3{
+            border:1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div id = "app">
+        <div :class="{set1:s1, set2:s2, set3:s3}">
+            안녕하세요, 감사합니다.
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            // el : '#app' // css 선택자 이용
+            el : '#app',
+            data:{
+                s1:true,
+                s2:false,
+                s3:true
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id = "select">
+        <label>가장 좋아하는 캐릭터?</label>
+        <input type = "text" v-model.lazy.trim="favorite"><br>
+        <label>팀 멤버 선택</label><br>
+        <input type="checkbox" value="1" v-model="team"><label>아이언맨</label>
+        <input type="checkbox" value="2" v-model="team"><label>토르</label>
+        <input type="checkbox" value="3" v-model="team"><label>헐크</label><br>
+        <label>출생 년도?</label><br>
+        <input type="text" v-model.number="year"><br>
+    </div>
+    <div id="result">
+        <p>당신의 선택은?</p>
+        <ul>
+            <li>캐릭터 : {{favorite}}</li>
+            <li>팀 : {{team}}</li>
+            <li>출생년도 : {{year}}</li>
+        </ul>
+    </div>
+
+    <script>
+
+        let model={favorite:"", team:[], year:""}
+
+        var select = new Vue({
+            // el : '#app' // css 선택자 이용
+            el : '#select',
+            data:model
+        });
+
+        var result = new Vue({
+            // el : '#app' // css 선택자 이용
+            el : '#result',
+            data:model
+        });
+    </script>
+
+</body>
+</html>

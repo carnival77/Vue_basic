@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <h1>교재 정보</h1>
+            <div v-for="(book,idx) in bookList" :key="idx">
+                <input type = "checkbox" v-model = "books" :value="book">
+                    {{book.name}} <span>{{book.price}}</span>
+            </div>
+        <hr>
+        <label>선택교재 : </label>
+        <div v-for="(book,i) in books" :key="book.name">{{book.name}}</div>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                bookList:[
+                    {name:'자바의 정석', price:2},
+                    {name:'JSP의 정석', price:3},
+                    {name:'SPRING의 정석', price:5},
+                    {name:'jQuery의 정석', price:10},
+                    {name:'Angular의 정석', price:8}
+                ],
+                books:[]
+            }
+        });
+        
+    </script>
+</body>
+</html>
