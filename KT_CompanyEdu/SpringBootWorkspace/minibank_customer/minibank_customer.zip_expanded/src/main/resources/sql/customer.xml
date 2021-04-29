@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.minibank.customer.repository.CustomerRepository">
+
+
+	<insert id="insertCustomer"
+		parameterType="com.minibank.customer.domain.entity.Customer">
+		insert
+		into TB_cstm(cstm_id, cstm_nm, cstm_age, cstm_gnd, cstm_pn, cstm_adr)
+		values ( #{cstmId}, #{cstmNm}, #{cstmAge}, #{cstmGnd}, #{cstmPn},
+		#{cstmAdr} )
+	</insert>
+
+	<select id="selectCustomer"
+		resultType="com.minibank.customer.domain.entity.Customer"
+		parameterType="string">
+		select cstm_id, cstm_nm, cstm_age, cstm_gnd, cstm_pn,
+		cstm_adr
+		from TB_CSTM
+		where cstm_id = #{cstmId}
+	</select>
+	<select id="selectAllCustomer"
+		resultType="com.minibank.customer.domain.entity.Customer"
+		parameterType="string">
+		select cstm_id, cstm_nm, cstm_age, cstm_gnd, cstm_pn,
+		cstm_adr
+		from TB_CSTM
+		order by cstm_id
+	</select>
+
+	<select id="existsCustomer" resultType="boolean"
+		parameterType="string">
+		select count(*)
+		from TB_CSTM
+		where cstm_id = #{cstmId}
+	</select>
+
+	<delete id="deleteCustomer"
+		parameterType="com.minibank.customer.domain.entity.Customer">
+		delete from TB_CSTM
+		where cstm_id = #{cstmId}
+	</delete>
+	<update id="updateCustomer"
+		parameterType="com.minibank.customer.domain.entity.Customer">
+		update TB_CSTM
+		set cstm_age = #{cstmAge}, cstm_pn=#{cstmPn}, cstm_adr=#{cstmAdr}
+		where cstm_id = #{cstmId}
+	</update>
+</mapper>

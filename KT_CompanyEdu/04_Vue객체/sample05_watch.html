@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <input type="number" v-model.number="v1"> +
+        <input type="number" v-model.number="v2"> = {{sum}}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el : '#app', // css 선택자 이용
+            data:{
+                v1:0,
+                v2:0,
+                sum:0
+            },
+           watch:{
+            v1(newValue,oldValue){
+                console.log("v1값 변경됨:",newValue,oldValue);
+                this.sum=newValue + this.v1;
+            },
+            v2(newValue,oldValue){
+                console.log("v2값 변경됨:",newValue,oldValue);
+                this.sum = this.v1 + newValue;
+            }
+           }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        computed : 1부터<input type="number" v-model="num"> 의 합은 {{sum2}}
+        <br>
+        methods : 1부터<input  type="number" v-model="num"> 의 합은 {{sum()}}
+    </div>
+    <!-- function 표현 : computed 는 sum. methods는 sum()-->
+
+    <script>
+        var app = new Vue({
+            el : '#app', // css 선택자 이용
+            data:{
+                num:0
+            },
+            methods:{
+                //sum:function(){ 
+                sum(){ // 위와 동일
+                    console.log("methods.sum");
+                    let result = 0;
+                    for(let i=1; i<=this.num; i++){
+                        result+=i;
+                    }
+                    return result;
+                }
+            },
+            computed:{
+                //sum:function(){ 
+                sum2(){ // 위와 동일
+                    console.log("computed.sum2");
+                    let result = 0;
+                    for(let i=1; i<=this.num; i++){
+                        result+=i;
+                    }
+                    return result;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

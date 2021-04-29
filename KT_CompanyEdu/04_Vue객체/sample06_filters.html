@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <!-- 한 줄 복사 -> alt + shift + 화살표 -->
+        <!-- 한 줄 삭제 : ctrl + shift + k -->
+        <!-- 왼쪽 패키지 익스플로러 창 보이기/닫기 : ctrl + b -->
+        <span>원본 : {{name}}</span><br>
+        <span>대문자 : {{name|toCap}}</span><br>
+        <span>첫 4글자만 : {{name|substr}}</span><br>
+        <span>첫 4글자만 대문자로 : {{name|substr|toCap}}</span><br>
+   </div>
+
+    <script>
+        var app = new Vue({
+            el : '#app', // css 선택자 이용
+            data:{
+                name:"HongKilDong"
+            },
+            filters:{
+                toCap(param){
+                    return param.toUpperCase();
+                },
+                substr(param){
+                    return param.substr(0,4);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
