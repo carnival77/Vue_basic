@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <h1>app</h1>
+        <my-component></my-component>
+    </div>
+    <hr>
+    
+
+    <template id="body-template">
+        <!-- template 안에는 반드시 단 하나의 root 태그가 필요하다. -->
+        <div>
+            <button @click="getTime"> 현재 시간 </button>
+            출력:{{current}}
+        </div>
+    </template>
+
+    <script>
+
+        var app = new Vue({
+            el : '#app', 
+            components:{
+                'my-component':{
+                    template:'#body-template',
+                    data:function(){
+                        return{
+                            current:0
+                        }
+                    },
+                    methods:{
+                        getTime(){
+                            this.current=new Date().getTime();
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

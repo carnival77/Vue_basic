@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <h1>event.preventDefault()</h1>
+        <form action="http://google.com" @submit="login" >
+            아이디: <input type="text" placeholder="4글자 이상" v-model="id"><br>
+            <input type="submit">
+        </form>
+        <h1>event.stopPropagation()</h1>
+        <div style="background-color: yellow;" @click="parent">
+            parent
+            <div style="background-color: blue;" @click="child">
+                child
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el : '#app', // css 선택자 이용
+            data:{
+                id:""
+            },
+            methods:{
+                parent(e){
+                    console.log("parent");
+                },
+                child(e){
+                    console.log("child");
+                    e.stopPropagation(); 
+                    // 이벤트 전파 방지. child의 이벤트가 parent 까지 전파되지 않고 child 내부에서만 처리되도록.
+                },
+
+
+
+                login(e){
+                    if(this.id.length >= 4)
+                    {
+                        e.target.submit();
+                    }
+                    else
+                    {
+                        e.preventDefault(); 
+                        // 기존 상태 유지. 즉 어떤 일도 일어나게 하지 않는다. 여기서는 아이디가 submit되지 않게 한다.
+                    }
+                }
+            }     
+        });
+
+    </script>
+
+</body>
+</html>

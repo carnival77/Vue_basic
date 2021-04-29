@@ -9,29 +9,25 @@
 </head>
 <body>
     <div id = "app">
-        <input type="number" v-model.number="v1"> +
-        <input type="number" v-model.number="v2"> = {{sum}}
+        <button @[event_type]="plus"> + </button>
+
     </div>
 
     <script>
         var app = new Vue({
             el : '#app', // css 선택자 이용
             data:{
-                v1:0,
-                v2:0,
-                sum:0
+                //event_type:'click'
+                event_type:'mouseover'
             },
-            watch:{
-                v1(newValue,oldValue){
-                console.log("v1값 변경됨:",newValue,oldValue);
-                this.sum=newValue + this.v1;
+            methods:{
+                plus(e){
+                    console.log("plus",e);
                 },
-                v2(newValue,oldValue){
-                console.log("v2값 변경됨:",newValue,oldValue);
-                this.sum = this.v1 + newValue;
-                }
-           }
+            }     
         });
+
+        console.log("Vue객체",app);
     </script>
 
 </body>

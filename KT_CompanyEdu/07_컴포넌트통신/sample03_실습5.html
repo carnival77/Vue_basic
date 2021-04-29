@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuejs 기본 구조</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>도서 목록 {{bookList.length}}권</h1>
+        <book-component :bookdata = "bookList"></book-component>
+    </div>
+    <template id="bookTemplate">
+        <div>
+            <!-- <h1>도서 목록 {{bookList.length}}권</h1> -->
+            <!-- {{book_data}} -->
+            <ul>
+                <li v-for="book in bookdata" v-bind:key="book.name">
+                  <img :src=`./images/${book.img}.jpg` width="50" height="50"> 
+                  {{book.name}}
+                </li>
+            </ul>
+        </div>
+    </template>
+    <script>
+
+        // app 위에 올라갈 자식 컴포넌트
+        /*const Feature = Vue.component('book-component',{
+            template:`#book`,
+            props:['book_data']
+        });*/
+
+        const Feature = Vue.component('book-component',{
+            template:`#bookTemplate`,
+            props:['bookdata']
+        });
+
+        //부모 컴포넌트
+        var app = new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    bookList:[
+                        {id:'p01',name:'위험한 식탁',price:2000,date:'20170401',img:'a'},
+                        {id:'p02',name:'공부의 비결',price:3000,date:'20170402',img:'b'},
+                        {id:'p03',name:'오메르타',   price:2500,date:'20170401',img:'c'},
+                        {id:'p04',name:'행복한 여행',price:4000,date:'20170401',img:'d'},
+                        {id:'p05',name:'해커스 토익',price:2000,date:'20170401',img:'e'},
+                        {id:'p06',name:'도로 안내서',price:2000,date:'20170401',img:'f'},
+                    ]
+                }
+            }
+        });
+ 
+    </script>
+</body>
+</html>

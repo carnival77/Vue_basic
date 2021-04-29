@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuejs 기본 구조</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>app</h1>
+        <child-component @receive_send_mesg="print_mesg"></child-component>
+    </div>
+    <template id="child">
+        <div>
+            <h1>child</h1>
+            <button @click="sendMesg">이벤트 발생</button>
+        </div>
+    </template>
+    <script>
+        // 자식
+        Vue.component('child-component',{
+            template:`#child`,
+            methods:{
+                sendMesg(){
+                    // 사용자 정의 이벤트 발생 => this.$emit('이벤트타입', 값)
+                    this.$emit('receive_send_mesg','홍길동')
+                }
+            }
+        });
+
+        //부모
+        var app = new Vue({
+            el:'#app',
+            methods:{
+                print_mesg(msg){
+                    console.log("from child : ",msg)
+                }
+            }
+        });
+ 
+    </script>
+</body>
+</html>
