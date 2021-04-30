@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <h1>사용자 관리</h1>
+        <button @click="all">전체 조회</button>
+        <input type="text" ref = "cstmId"><button @click="search" >검색</button>
+        <table border="1">
+            <tr>
+                <th>사원ID</th>
+                <th>사원이름</th>
+                <th>나이</th>
+                <th>성별</th>
+                <th>전화번호</th>
+                <th>주소</th>
+            </tr>
+            <tr v-for="(customer,idx) in customerList" :key = "idx">
+                <td>{{customer.cstmId}}</td>
+                <td>{{customer.cstmNm}}</td>
+                <td>{{customer.cstmAge}}</td>
+                <td>{{customer.cstmGnd}}</td>
+                <td>{{customer.cstmPn}}</td>
+                <td>{{customer.cstmAdr}}</td>
+            </tr>
+        </table>
+        <hr>
+        <table border = "1">
+            <tr>
+                <td>사원ID</td>
+                <td><input type="text" v-model="customer.cstmId"></td>
+            </tr>
+            <tr>
+                <td>사원이름</td>
+                <td><input type="text" v-model="customer.cstmNm"></td>
+            </tr>
+            <tr>
+                <td>나이</td>
+                <td><input type="text" v-model.number="customer.cstmAge"></td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td><input type="text" v-model="customer.cstmGnd"></td>
+            </tr>
+            <tr>
+                <td>전화번호</td>
+                <td><input type="text" v-model="customer.cstmPn"></td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td><input type="text" v-model.trim="customer.cstmAdr"></td>
+        </table>
+        <button @click = "add"> 추가 </button>
+        <button @click = "del"> 삭제 </button>
+        <button @click = "update"> 수정 </button>
+
+    </div>
+
+    <script>
+
+        var app = new Vue({
+            el : '#app', // css 선택자 이용
+            data:{
+                customerList:[],
+                customer:{}
+            },
+            methods:{
+                search(){
+                    var cstmId = this.$refs.cstmId.value;
+                    this.customerList=[];
+                    var cList = this.customerList;
+                    // get : select 
+                    //////////////////////////////////////
+                    axios({
+                        method:"get",
+                        url:`http://localhost:8076/minibank/customer/rest/v0.8/${cstmId}`,
+                    }).then(res=>{
+                        cList.push(res.data);
+                    }).catch(error=>{console.log(error)});
+                },
+                update(){
+                    // put : 수정 //////////////////////////////
+                    axios({
+                        method:"put",
+                        url:'http://localhost:8076/minibank/customer/rest/v0.8/',
+                        data:this.customer
+                    }).then(res=>{}).catch(error=>{console.log(error)})
+                },
+                del(){
+                    var cstmId= this.customer.cstmId;
+                    console.log(cstmId);
+                    ////////////////////////////////
+                    axios({
+                        method:"delete",
+                        url:`http://localhost:8076/minibank/customer/del/v0.8/${cstmId}`
+                    }).then(res=>{
+                        this.all();
+                    }).catch(error=>{console.log(error)});
+                },
+                add(){
+                    // post:insert
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:8076/minibank/customer/rest/v0.8/',
+                        data : this.customer // 
+                    //}).then(function(res){ // function()의 this와 lambda의 this가 서로 다르다.
+                    //    this.all(); // function 내에서 this를 쓰면, axios 를 가리킨다. 따라서 여기서 바라는, vue  객체의 all()을 가리킬 수 없다. 
+                        // 이를 해결하기 위해서는 람다 식을 써서 this가 바깥의 vue를 가리키도록 한다.
+                    }).then(res=>{
+                        this.all();
+                    }).catch(function(error){
+                        console.log(error);
+                    });
+                    ///////////////////////////////////////
+                },
+                all(){
+                    this.customerList=[];
+                    var cList = this.customerList;
+                    // get : select 
+                    //////////////////////////////////////
+                    axios.get("http://localhost:8076/minibank/customer/rest/v0.8/all")
+                    .then(function(res){
+                        res.data.map(function(ele,idx){
+                            cList.push(ele);
+                        })
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+
+                    ////////////////////////////////////
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

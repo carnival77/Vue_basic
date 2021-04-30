@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <h1>axios</h1>
+        <button @click="get_users">users</button>
+        <ul v-for="(user,idx) in user_list" :key="idx">
+            <li>{{user.id}},{{user.name}},{{user.email}}</li>
+        </ul>
+    </div>
+
+    <script>
+
+        var app = new Vue({
+            el : '#app', // css 선택자 이용
+            data:{
+                user_list:[]
+            },
+            methods:{
+                get_users(){
+                    var list = this.user_list;
+                    ///////////////////////////////
+                    axios.get("https://jsonplaceholder.typicode.com/users")
+                    .then(function(res){
+                        console.log("res",res.data);
+                        res.data.map(function(ele,idx){
+                            list.push(ele);
+                        });
+                    })
+                    .catch(function(error){
+                        console.log(error);
+
+                    });
+
+
+                    ////////////////////////////////
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

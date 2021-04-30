@@ -10,13 +10,16 @@
 <body>
     <div id="app">
         <h1>도서 목록 {{bookList.length}}권</h1>
-        <book-component :bookdata="bookList"></book-component>
+         선택된 도서:<input type="text" v-model="bookName"><br>
+        <book-component :bookdata="bookList" @gogo="receive_name"></book-component>
     </div>
     <template id="bookTemplate">
         <div>
             <ul>
                 <li v-for="book in bookdata" v-bind:key="book.name">
-                  <img :src=`./images/${book.img}.jpg` width="50" height="50"> 
+                  <img :src=`./images/${book.img}.jpg` width="50" height="50"
+                   @click="img_click(book.name)"
+                  > 
                   {{book.name}}
                 </li>
             </ul>
@@ -26,10 +29,13 @@
         //자식 컴포넌트
         const Feature = Vue.component('book-component',{
             template: '#bookTemplate',
-            props:['bookdata']
-                    
+            props:['bookdata'],
+            methods: {
+                img_click(name){
+                    this.$emit('gogo', name);
+                }
+            },
         });
-
         //부모 컴포넌트
         var app = new Vue({
             el:'#app',
@@ -42,9 +48,15 @@
                         {id:'p04',name:'행복한 여행',price:4000,date:'20170401',img:'d'},
                         {id:'p05',name:'해커스 토익',price:2000,date:'20170401',img:'e'},
                         {id:'p06',name:'도로 안내서',price:2000,date:'20170401',img:'f'},
-                    ]
+                    ],
+                bookName:""
                 }
-             }
+             },
+             methods: {
+                receive_name(m){
+                    this.bookName = m;
+                }
+             },
         });
  
     </script>

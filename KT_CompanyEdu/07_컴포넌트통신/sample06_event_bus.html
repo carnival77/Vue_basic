@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=mesg, initial-scale=1.0">
+    <title>Vuejs 기본구조</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+      <div id="app">
+        <h1>app</h1>
+        <comp1-component></comp1-component>
+        <comp2-component></comp2-component>
+      </div>
+     
+
+      <script>
+        //이벤트 버스 생성
+        let eventBus = new Vue();
+
+        Vue.component('comp1-component',{
+            template:`<input type="text" @keyup.enter="send">`,
+            methods: {
+              send(e){
+                 eventBus.$emit("gogo", e.target.value);
+              }
+            },
+        });
+        Vue.component('comp2-component',{
+            template:`<span>{{mesg}}</span>`,
+            data:function(){
+              return{
+                mesg:""
+              }
+            },
+            created() {
+              eventBus.$on("gogo", this.update);
+            },
+            methods: {
+              update(m){
+                  this.mesg = m;
+              }
+            },
+        });
+
+        var app = new Vue({
+          el: '#app'
+        });
+      </script>
+</body>
+</html>
+
+
