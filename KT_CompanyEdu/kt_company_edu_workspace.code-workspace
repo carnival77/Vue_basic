@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\vuejs_cli\\my-app"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\vuejs_cli\\movie_info"
+		},
+		{
+			"path": "..\\..\\CompanyEducation_TeacherCode\\KTds_Vuejs\\3_day\\movie_info"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "KT_CompanyEdu"
+	}
+}

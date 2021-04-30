@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+    <div id = "app">
+        <h1>Vue Router example</h1>
+        <div>이동 가능한 페이지</div>
+        <router-link to="/">기본 페이지</router-link>
+        <router-link to="/user1/hong">hong 페이지</router-link>
+        <router-link to="/user2/park">park 페이지</router-link>
+        <hr>
+        <router-view>
+
+        </router-view>
+    </div>
+
+    <script>
+        let sub1 = Vue.component("sub1",{
+            template:`<div>1. 전달된 값 : {{$route.params.id}}</div>`
+        })
+        let sub2 = Vue.component("sub2",{
+            template:`<div>2. 전달된 값 : {{$route.params.id}} </div>`,
+
+        })
+
+        // VueRouter 객체 생성
+        const router = new VueRouter({
+            routes:[
+            {path:"/",component:null},
+            {path:"/user1/:id",component:sub1},
+            {path:"/user2/:id",component:sub2},
+            ]
+        })
+
+        var app = new Vue({
+            el : '#app', 
+            router:router
+        });
+
+    </script>
+
+</body>
+</html>

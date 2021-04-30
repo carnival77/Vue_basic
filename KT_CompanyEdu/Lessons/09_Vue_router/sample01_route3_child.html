@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+    <div id = "app">
+        <h1>Vue Router example</h1>
+        <div>임의의 사용자 홈</div>
+        <!-- 1레벨 -->
+        <router-link to="/user/hong">사용자 홈</router-link>
+        <!-- 2레벨 -->
+        <router-link to="/user/hong/profile">사용자 프로필</router-link>
+        <router-link to="/user/hong/post">사용자 포스트</router-link>
+        <hr>
+        <router-view>
+
+        </router-view>
+    </div>
+
+    <script>
+        var userHome = Vue.component("user-comp",{
+            template:
+            `
+            <div>사용자 {{$route.params.id}}        
+                <router-view></router-view>
+            </div>`
+        })
+        var profileComp = Vue.component("profile-comp",{
+            template:`<div>사용자 프로필</div>`
+        })
+        var postComp = Vue.component("post-comp",{
+            template:`<div>사용자 포스트</div>`
+        })
+
+        // VueRouter 객체 생성
+        const router = new VueRouter({
+            routes:[
+            {path:"/user/:id",component:userHome,
+                children:[
+                    {path:"profile",component:profileComp},
+                    {path:"post",component:postComp},
+                ]
+            },
+            ]
+        })
+
+        var app = new Vue({
+            el : '#app', 
+            router:router
+        });
+
+    </script>
+
+</body>
+</html>
