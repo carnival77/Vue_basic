@@ -11,7 +11,7 @@
     <div id="app">
         <h1>도서 목록 {{bookList.length}}권</h1>
          선택된 도서:<input type="text" v-model="bookName"><br>
-        <book-component :bookdata="bookList" @gogo="receive_name"></book-component>
+        <book-component :bookdata="bookList" @give_name="receive_name"></book-component>
     </div>
     <template id="bookTemplate">
         <div>
@@ -31,8 +31,8 @@
             template: '#bookTemplate',
             props:['bookdata'],
             methods: {
-                img_click(name){
-                    this.$emit('gogo', name);
+                img_click(name_to_parent){
+                    this.$emit('give_name', name_to_parent);
                 }
             },
         });
@@ -53,8 +53,8 @@
                 }
              },
              methods: {
-                receive_name(m){
-                    this.bookName = m;
+                receive_name(name_fr_child){
+                    this.bookName = name_fr_child;
                 }
              },
         });
